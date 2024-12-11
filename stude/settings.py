@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-5d2qqi4s#gox^!x$v0rmodz#l&ehu4o$6v&s1&a8hu%cj%3mie
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'stude.vercel.app',  # Your Vercel domain
+    'stude-official.vercel.app',  # Your Vercel domain
     '127.0.0.1',                 # Localhost
     'localhost',                 # Localhost alternative
 ]
