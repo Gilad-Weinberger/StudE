@@ -1,0 +1,76 @@
+body {
+  margin: 0px;
+  background-color: #f9f9f9;
+}
+body .main {
+  padding: 40px;
+  margin-left: 270px;
+  max-width: calc(100vw - 270px);
+}
+body .main .title {
+  margin: 0px;
+  font-size: 40px;
+}
+body .main .top {
+  display: flex;
+  gap: 35px;
+  margin-top: 20px;
+}
+body .main .top .top-item {
+  width: calc(100% - 70px);
+  height: 350px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+body .main .top .top-item .name {
+  margin: 0px;
+  margin-bottom: 20px;
+}
+body .main .top .top-item.class .class-name {
+  margin: 0px;
+  font-size: 30px;
+}
+body .main .top .top-item.exams .exams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+body .main .top .top-item.exams .exams-list .exam {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .main .top .top-item.exams .exams-list .exam .name {
+  margin: 0px;
+  font-size: 20px;
+}
+body .main .top .top-item.exams .exams-list .exam .date {
+  margin: 0px;
+  font-size: 15px;
+}
+body .main .top .top-item.assignments .assignments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+body .main .top .top-item.assignments .assignments-list .assignment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .main .top .top-item.assignments .assignments-list .assignment .name {
+  margin: 0px;
+  font-size: 20px;
+  width: 58%;
+}
+body .main .top .top-item.assignments .assignments-list .assignment .date {
+  margin: 0px;
+  font-size: 15px;
+}/*# sourceMappingURL=class.css.map */

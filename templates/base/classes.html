@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudE | Classes</title>
+    <link rel="stylesheet" href="{% static 'css/base/classes.css' %}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/logo.png' %}"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    {% include 'components/sidebar.html' with active_tab='classes' %}
+    <div class="main">
+      <h1 class="title">Classes</h1>
+      <div class="classes">
+        {% for class in classes %}
+        <a href="{% url 'base:class_page' class.id %}" class="class">
+          <img src="{% static 'images/class.jpg' %}" alt="" class="icon" />
+          <div class="bottom">
+            <h2 class="class-name">{{ class.name }}</h2>
+            <p class="start">></p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

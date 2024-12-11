@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudE | Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/base/dashboard.css' %}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/logo.png' %}"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    {% include 'components/sidebar.html' with active_tab='dashboard' %}
+    <div class="main">
+      <h1 class="title">Dashboard</h1>
+    </div>
+  </body>
+</html>

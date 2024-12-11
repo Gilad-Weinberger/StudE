@@ -1,0 +1,119 @@
+body {
+  margin: 0px;
+  background-color: #f9f9f9;
+  .main {
+    padding: 40px;
+    margin-left: 270px;
+    max-width: calc(100vw - 270px);
+    .title {
+      margin: 0px;
+      font-size: 40px;
+    }
+    .exams {
+      margin-top: 40px;
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      thead {
+        background-color: #f5f5f5;
+        tr {
+          th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+            border-right: 1px solid #eee;
+            &:last-child {
+              border-right: none;
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            border-right: 1px solid #eee;
+            position: relative;
+            &:last-child {
+              border-right: none;
+            }
+            &.name {
+              font-size: 16px;
+              input {
+                width: 100%;
+                font-size: 16px;
+              }
+            }
+            &.class {
+              font-size: 15px;
+              color: #666;
+              select {
+                width: 100%;
+                font-size: 15px;
+                color: #666;
+              }
+            }
+            &.date {
+              font-size: 14px;
+              color: #666;
+              input {
+                width: 100%;
+                font-size: 14px;
+                color: #666;
+              }
+            }
+            &.grade {
+              font-size: 15px;
+              color: #434bbf;
+              font-weight: 500;
+              input {
+                width: 100%;
+                font-size: 15px;
+                color: #434bbf;
+                font-weight: 500;
+              }
+            }
+
+            input,
+            select {
+              margin: 0;
+              padding: 0;
+              border: none;
+              background: transparent;
+              box-sizing: border-box;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              padding: 15px;
+              font-family: inherit;
+              &:focus {
+                outline: 2px solid #434bbf;
+                outline-offset: -2px;
+              }
+            }
+          }
+          &:last-child td {
+            border-bottom: none;
+          }
+          &.new-exam td {
+            text-align: center;
+            a {
+              color: #434bbf;
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

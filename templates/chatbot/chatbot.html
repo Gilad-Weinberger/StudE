@@ -1,0 +1,107 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudE | AI Chatbot</title>
+    <link rel="stylesheet" href="{% static 'css/chatbot/chatbot.css' %}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/logo.png' %}"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    {% include 'components/sidebar.html' with active_tab='chatbot' %}
+    <div class="main">
+      <h1 class="title">AI Chatbot</h1>
+      <div class="chatbot">
+        <div class="messages" id="messages">
+          {% for message in messages %}
+          <div class="message-container">
+            <div class="user-message">{{ message.message }}</div>
+            <div class="bot-message">{{ message.response }}</div>
+          </div>
+          {% endfor %}
+        </div>
+        <form method="POST" class="chat-form" id="chat-form">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="message"
+            id="message-input"
+            placeholder="Type your message..."
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      const messagesDiv = document.getElementById("messages");
+      const chatForm = document.getElementById("chat-form");
+      const messageInput = document.getElementById("message-input");
+
+      // Scroll to bottom of messages
+      function scrollToBottom() {
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+      scrollToBottom();
+
+      // Handle form submission
+      chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(chatForm);
+        const message = formData.get("message");
+
+        // Clear input
+        messageInput.value = "";
+
+        // Add message to UI immediately
+        const messageContainer = document.createElement("div");
+        messageContainer.className = "message-container";
+        messageContainer.innerHTML = `
+          <div class="user-message">${message}</div>
+          <div class="bot-message">...</div>
+        `;
+        messagesDiv.appendChild(messageContainer);
+        scrollToBottom();
+
+        // Send to server
+        try {
+          const response = await fetch('{% url "chatbot:handle_message" %}', {
+            method: "POST",
+            headers: {
+              "X-CSRFToken": formData.get("csrfmiddlewaretoken"),
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message,
+              action_type: "text",
+            }),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || "Server error");
+          }
+
+          // Update bot response
+          messageContainer.querySelector(".bot-message").textContent =
+            data.response;
+          scrollToBottom();
+        } catch (error) {
+          console.error("Error:", error);
+          messageContainer.querySelector(
+            ".bot-message"
+          ).textContent = `Error: ${error.message || "Something went wrong"}`;
+        }
+      });
+    </script>
+  </body>
+</html>

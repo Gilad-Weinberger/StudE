@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudE | {{ class.name }} Class</title>
+    <link rel="stylesheet" href="{% static 'css/base/class.css' %}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/logo.png' %}"
+      type="image/x-icon"
+    />
+    <meta http-equiv="refresh" content="100" />
+  </head>
+  <body>
+    {% include 'components/sidebar.html' with active_tab='classes' %}
+    <div class="main">
+      <h1 class="title">{{ class.name }} Class</h1>
+      <div class="top">
+        <div class="class top-item">
+          <h1 class="name">Class</h1>
+          <p class="class-name">{{ class.name }}</p>
+        </div>
+        <div class="exams top-item">
+          <h1 class="name">Exams</h1>
+          <div class="exams-list">
+            {% for exam in exams %}
+            <div class="exam">
+              <h2 class="name">{{ exam.name }}</h2>
+              <p class="date">{{ exam.date|date:"d/m/Y" }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="assignments top-item">
+          <h1 class="name">Assignments</h1>
+          <div class="assignments-list">
+            {% for assignment in assignments %}
+            <div class="assignment">
+              <h2 class="name">{{ assignment.name }}</h2>
+              <p class="date">{{ assignment.due_date|date:"d/m/Y H:i" }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

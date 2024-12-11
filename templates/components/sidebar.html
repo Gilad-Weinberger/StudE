@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/components/sidebar.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <img class="logo" src="{% static 'images/logo.png' %}" alt="logo" />
+      <div class="menu">
+        <a
+          href="{% url 'base:dashboard' %}"
+          class="menu-item {% if active_tab == 'dashboard' %}now{% endif %}"
+        >
+          <i class="fas fa-home"></i>
+          <p>Dashboard</p>
+        </a>
+        <a
+          href="{% url 'chatbot:chatbot' %}"
+          class="menu-item {% if active_tab == 'chatbot' %}now{% endif %}"
+        >
+          <i class="fas fa-robot"></i>
+          <p>Chatbot</p>
+        </a>
+        <a
+          href="#"
+          class="menu-item {% if active_tab == 'schedule' %}now{% endif %}"
+        >
+          <i class="fas fa-calendar"></i>
+          <p>Schedule</p>
+        </a>
+        <a
+          href="{% url 'base:classes' %}"
+          class="menu-item {% if active_tab == 'classes' %}now{% endif %}"
+        >
+          <i class="fas fa-chalkboard"></i>
+          <p>Classes</p>
+        </a>
+        <a
+          href="{% url 'base:assignments' %}"
+          class="menu-item {% if active_tab == 'assignments' %}now{% endif %}"
+        >
+          <i class="fas fa-tasks"></i>
+          <p>Assignments</p>
+        </a>
+        <a
+          href="{% url 'base:exams' %}"
+          class="menu-item {% if active_tab == 'exams' %}now{% endif %}"
+        >
+          <i class="fas fa-file-alt"></i>
+          <p>Exams</p>
+        </a>
+        <a
+          href="#"
+          class="menu-item {% if active_tab == 'grades' %}now{% endif %}"
+        >
+          <i class="fas fa-signal"></i>
+          <p>Grades</p>
+        </a>
+        <a
+          href="#"
+          class="menu-item {% if active_tab == 'settings' %}now{% endif %}"
+        >
+          <i class="fas fa-cog"></i>
+          <p>Settings</p>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
