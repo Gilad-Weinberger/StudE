@@ -29,10 +29,10 @@ def Classes(request):
 @login_required
 def Class_Page(request, class_id):
     user = request.user
-    class_obj = Class.objects.get(id=class_id)
+    class_obj = Class.objects.prefetch_related('exam_set', 'assignment_set').get(id=class_id)
 
-    exams = Exam.objects.filter(class_obj=class_obj)
-    assignments = Assignment.objects.filter(class_obj=class_obj)
+    exams = class_obj.exam_set.all()
+    assignments = class_obj.assignment_set.all()
 
     context = {
         "user": user,
@@ -46,8 +46,9 @@ def Class_Page(request, class_id):
 @login_required
 def Assignments(request):
     user = request.user
-    assignments = Assignment.objects.filter(class_obj__user=user)
-    classes = Class.objects.filter(user=user)
+    class_ids = Class.objects.filter(user=user).values_list('id', flat=True)
+    assignments = Assignment.objects.filter(class_obj_id__in=class_ids)
+    classes = Class.objects.prefetch_related('assignment_set').filter(user=user)
 
     context = {
         "user": user,
