@@ -1,0 +1,82 @@
+body {
+  margin: 0px;
+  background-color: #f9f9f9;
+  .main {
+    padding: 40px;
+    margin-left: 270px;
+    max-width: calc(100vw - 270px);
+    .title {
+      margin: 0px;
+      font-size: 40px;
+    }
+    .top {
+      display: flex;
+      gap: 35px;
+      margin-top: 20px;
+      .top-item {
+        width: calc((100% - 70px));
+        height: 350px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        .name {
+          margin: 0px;
+          margin-bottom: 20px;
+        }
+        &.class {
+          .class-name {
+            margin: 0px;
+            font-size: 30px;
+          }
+        }
+        &.exams {
+          .exams-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid black;
+            .exam {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              .name {
+                margin: 0px;
+                font-size: 20px;
+              }
+              .date {
+                margin: 0px;
+                font-size: 15px;
+              }
+            }
+          }
+        }
+        &.assignments {
+          .assignments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid black;
+            .assignment {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              .name {
+                margin: 0px;
+                font-size: 20px;
+                width: 58%;
+              }
+              .date {
+                margin: 0px;
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

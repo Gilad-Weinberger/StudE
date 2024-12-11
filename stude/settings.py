@@ -26,8 +26,11 @@ SECRET_KEY = 'django-insecure-5d2qqi4s#gox^!x$v0rmodz#l&ehu4o$6v&s1&a8hu%cj%3mie
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'stude.vercel.app',  # Your Vercel domain
+    '127.0.0.1',                 # Localhost
+    'localhost',                 # Localhost alternative
+]
 
 # Application definition
 
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -84,6 +88,15 @@ DATABASES = {
     }
 }
 
+DATABASES['default'] = {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'railway',
+    'USER': 'postgres',
+    'PASSWORD': 'CRVaDyIhHtyrelDAMduzKDPJJjhreVsI',
+    'HOST': 'junction.proxy.rlwy.net',
+    'PORT': '23781'
+}
+# postgresql://postgres:CRVaDyIhHtyrelDAMduzKDPJJjhreVsI@junction.proxy.rlwy.net:23781/railway
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
