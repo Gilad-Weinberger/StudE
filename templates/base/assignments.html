@@ -16,6 +16,7 @@
   <body>
     {% include 'components/sidebar.html' with active_tab='assignments' %}
     <div class="main">
+      {% include 'components/topbar.html' %}
       <h1 class="title">Assignments</h1>
       <table class="assignments">
         <thead>
@@ -43,10 +44,10 @@
               </select>
             </td>
             <td class="description editable" data-field="description">{{ assignment.description }}</td>
-            <td class="date-created">{{ assignment.date_created|date:"d/m/Y H:i" }}</td>
+            <td class="date">{{ assignment.date_created|date:"d/m/Y H:i" }}</td>
             <td class="due-date editable" data-field="due_date">
               <input type="datetime-local" value="{{ assignment.due_date|date:'Y-m-d\TH:i' }}" style="display:none">
-              <span>{{ assignment.due_date|date:"d/m/Y H:i" }}</span>
+              <span>{{ assignment.due_date|date:"d/m/Y H:i"|default:"" }}</span>
             </td>
             <td class="status editable" data-field="status">
               <select style="display:block">
@@ -59,7 +60,7 @@
             </td>
             <td class="grade editable" data-field="grade">
               <input type="number" min="0" max="100" step="0.01" value="{{ assignment.grade|default:'' }}" style="display:none">
-              <span>{{ assignment.grade|default:"-" }}</span>
+              <span>{{ assignment.grade|default:"" }}</span>
             </td>
           </tr>
           {% endfor %}
@@ -74,7 +75,6 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const editables = document.querySelectorAll('.editable');
-        let currentlyEditing = null;
         
         editables.forEach(field => {
             const fieldType = field.dataset.field;
@@ -88,27 +88,28 @@
             } else if (fieldType === 'due_date' || fieldType === 'grade') {
                 // Handle date and grade inputs
                 const input = field.querySelector('input');
-                input.addEventListener('blur', function(e) {
+                const span = field.querySelector('span');
+                
+                field.addEventListener('click', function() {
+                    input.style.display = 'block';
+                    span.style.display = 'none';
+                    input.focus();
+                });
+                
+                input.addEventListener('blur', function() {
+                    input.style.display = 'none';
+                    span.style.display = 'block';
                     updateField(field, this.value);
                 });
-            }
-            
-            field.addEventListener('click', function(e) {
-                if (fieldType !== 'class_obj' && fieldType !== 'status') {  // Don't create input for select
-                    const currentValue = fieldType === 'grade' ? 
-                        (this.textContent.trim() === '-' ? '' : this.textContent) : 
-                        this.textContent.trim();
+            } else {
+                // Handle text inputs (name, description)
+                field.addEventListener('click', function() {
+                    const currentValue = this.textContent.trim();
                     
                     if (!this.querySelector('input')) {
                         const input = document.createElement('input');
-                        input.type = fieldType === 'due_date' ? 'datetime-local' : 
-                                    fieldType === 'grade' ? 'number' : 'text';
+                        input.type = 'text';
                         input.value = currentValue;
-                        if (fieldType === 'grade') {
-                            input.step = '0.01';
-                            input.min = '0';
-                            input.max = '100';
-                        }
                         this.textContent = '';
                         this.appendChild(input);
                         input.focus();
@@ -117,8 +118,8 @@
                             updateField(field, this.value);
                         });
                     }
-                }
-            });
+                });
+            }
         });
         
         function updateField(field, value) {
@@ -137,11 +138,11 @@
             .then(data => {
                 if (data.status === 'success') {
                     if (fieldType === 'due_date') {
-                        field.innerHTML = `<input type="datetime-local" value="${value}" style="display:none"><span>${data.formatted_date}</span>`;
+                        field.querySelector('span').textContent = data.formatted_date;
                     } else if (fieldType === 'class_obj' || fieldType === 'status') {
-                        // Keep the select element as is
+                        // Select elements are handled automatically
                     } else if (fieldType === 'grade') {
-                        field.innerHTML = `<input type="number" min="0" max="100" step="0.01" value="${value}" style="display:none"><span>${data.value}</span>`;
+                        field.querySelector('span').textContent = data.value;
                     } else {
                         field.textContent = data.value;
                     }
@@ -149,26 +150,25 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Revert to original value on error
                 window.location.reload();
             });
         }
-      });
 
-      function getCookie(name) {
-          let cookieValue = null;
-          if (document.cookie && document.cookie !== '') {
-              const cookies = document.cookie.split(';');
-              for (let i = 0; i < cookies.length; i++) {
-                  const cookie = cookies[i].trim();
-                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                      break;
-                  }
-              }
-          }
-          return cookieValue;
-      }
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+      });
     </script>
   </body>
-</html>
+</html>ס

@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/components/topbar.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="date">
+        <i class="fas fa-calendar"></i>
+        <p class="date-text">{{ current_date }}</p>
+      </div>
+      <div class="right">
+        <div class="search">
+          <input type="text" placeholder="Search" />
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="profile">
+          <img
+            class="profile-image"
+            src="{% static 'images/logo.png' %}"
+            alt="profile"
+          />
+          <p>{{ user.username }}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -7,9 +7,11 @@ from .models import *
 @login_required
 def Dashboard(request):
     user = request.user
+    current_date = date.today()
 
     context = {
-        "user": user
+        "user": user,
+        "current_date": current_date
     }
     
     return render(request, 'base/dashboard.html', context)
@@ -18,10 +20,12 @@ def Dashboard(request):
 def Classes(request):
     user = request.user
     classes = Class.objects.filter(user=user)
+    current_date = date.today()
 
     context = {
         "user": user,
-        "classes": classes
+        "classes": classes,
+        "current_date": current_date
     }
 
     return render(request, 'base/classes.html', context)
@@ -34,11 +38,14 @@ def Class_Page(request, class_id):
     exams = class_obj.exam_set.all()
     assignments = class_obj.assignment_set.all()
 
+    current_date = date.today() 
+
     context = {
         "user": user,
         "class": class_obj,
         "exams": exams,
-        "assignments": assignments
+        "assignments": assignments,
+        "current_date": current_date
     }
 
     return render(request, 'base/class.html', context)
@@ -46,15 +53,16 @@ def Class_Page(request, class_id):
 @login_required
 def Assignments(request):
     user = request.user
-    class_ids = Class.objects.filter(user=user).values_list('id', flat=True)
-    assignments = Assignment.objects.filter(class_obj_id__in=class_ids)
+    assignments = Assignment.objects.filter(user=user)
     classes = Class.objects.prefetch_related('assignment_set').filter(user=user)
+    current_date = date.today()
 
     context = {
         "user": user,
         "assignments": assignments,
         "classes": classes,
-        "status_choices": Assignment.STATUS_CHOICES
+        "status_choices": Assignment.STATUS_CHOICES,
+        "current_date": current_date
     }
 
     return render(request, 'base/assignments.html', context)
@@ -62,23 +70,17 @@ def Assignments(request):
 @login_required
 def create_assignment(request):
     user = request.user
-    default_class = Class.objects.filter(user=user).first()
     
-    if default_class:
-        assignment = Assignment.objects.create(
-            class_obj=default_class,
-            name="New Assignment",
-            status=Assignment.STATUS_CHOICES[0][0],  # Default to the first status choice
-        )
-        return redirect('base:assignments')
-    else:
-        return redirect('base:classes')
+    assignment = Assignment.objects.create(
+        user=user,
+    )
+    return redirect('base:assignments')
 
 @login_required
 def update_assignment(request, assignment_id):
     if request.method == 'POST':
         try:
-            assignment = Assignment.objects.get(id=assignment_id, class_obj__user=request.user)
+            assignment = Assignment.objects.get(id=assignment_id, user=request.user)
             field = request.POST.get('field')
             value = request.POST.get('value')
             
@@ -126,13 +128,15 @@ def update_assignment(request, assignment_id):
 @login_required
 def Exams(request):
     user = request.user
-    exams = Exam.objects.filter(class_obj__user=user)
+    exams = Exam.objects.filter(user=user)
     classes = Class.objects.filter(user=user)
+    current_date = date.today()
 
     context = {
         "user": user,
         "exams": exams,
-        "classes": classes
+        "classes": classes,
+        "current_date": current_date
     }
 
     return render(request, 'base/exams.html', context)
@@ -140,24 +144,17 @@ def Exams(request):
 @login_required
 def create_exam(request):
     user = request.user
-    default_class = Class.objects.filter(user=user).first()
     
-    if default_class:
-        exam = Exam.objects.create(
-            class_obj=default_class,
-            name="New Exam",
-            date=date.today(),
-            duration=60
-        )
-        return redirect('base:exams')
-    else:
-        return redirect('base:classes')
+    exam = Exam.objects.create(
+        user=user,
+    )
+    return redirect('base:exams')
 
 @login_required
 def update_exam(request, exam_id):
     if request.method == 'POST':
         try:
-            exam = Exam.objects.get(id=exam_id, class_obj__user=request.user)
+            exam = Exam.objects.get(id=exam_id, user=request.user)
             field = request.POST.get('field')
             value = request.POST.get('value')
             

@@ -58,6 +58,9 @@ body .main .assignments tbody tr td.grade select {
 body .main .assignments tbody tr td.name {
   width: 18%;
 }
+body .main .assignments tbody tr td.date {
+  width: 17%;
+}
 body .main .assignments tbody tr td.grade {
   color: #434bbf;
   font-weight: 500;

@@ -16,6 +16,7 @@
   <body>
     {% include 'components/sidebar.html' with active_tab='classes' %}
     <div class="main">
+      {% include 'components/topbar.html' %}
       <h1 class="title">Classes</h1>
       <div class="classes">
         {% for class in classes %}

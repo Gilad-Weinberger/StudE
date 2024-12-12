@@ -17,7 +17,8 @@ class Assignment(models.Model):
         ('not_submitted', 'Not Submitted')
     ]
 
-    class_obj = models.ForeignKey(Class, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    class_obj = models.ForeignKey(Class, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -26,13 +27,16 @@ class Assignment(models.Model):
     grade = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} | {self.class_obj} | {self.due_date.strftime('%d/%m/%Y %H:%M')}"
-
+        due_date_str = self.due_date.strftime('%d/%m/%Y %H:%M') if self.due_date else 'No due date'
+        class_name = self.class_obj if self.class_obj else 'No class'
+        return f"{self.name} | {class_name} | {due_date_str}"
+    
 class Exam(models.Model):
-    class_obj = models.ForeignKey(Class, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    class_obj = models.ForeignKey(Class, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200)
-    date = models.DateField()
-    duration = models.IntegerField()
+    date = models.DateField(null=True, blank=True)
+    duration = models.IntegerField(null=True, blank=True)
     grade = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
