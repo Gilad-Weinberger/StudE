@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +28,9 @@ SECRET_KEY = 'django-insecure-5d2qqi4s#gox^!x$v0rmodz#l&ehu4o$6v&s1&a8hu%cj%3mie
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+# Get current hostname
+CURRENT_HOSTNAME = socket.gethostname()
 
 # Application definition
 
@@ -106,7 +110,7 @@ DATABASES['default'] = {
     'NAME': 'stude_db',
     'USER': 'postgres',
     'PASSWORD': 'stude123',
-    'HOST': '*',
+    'HOST': CURRENT_HOSTNAME,
     'PORT': '5432'
 }
 
