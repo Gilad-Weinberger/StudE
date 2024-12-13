@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +41,6 @@ INSTALLED_APPS = [
     'base',
     'users',
     'chatbot',
-    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -51,13 +51,21 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware"
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+hostname = socket.gethostname()
+local_ips = ['127.0.0.1', 'localhost']
+
+if hostname in local_ips or '127.0.0.1' in socket.gethostbyname_ex(hostname)[2]:
+    INSTALLED_APPS += ['debug_toolbar']
+    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE
+
+    INTERNAL_IPS = [
+        '127.0.0.1',
+        'localhost',
+    ]
+
 
 ROOT_URLCONF = 'stude.urls'
 

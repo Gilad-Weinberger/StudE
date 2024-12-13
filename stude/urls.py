@@ -9,7 +9,10 @@ urlpatterns = [
     path('', include('base.urls')),
     path('users/', include('users.urls')),
     path('chatbot/', include('chatbot.urls')),
-] + debug_toolbar_urls()
+]
+
+if 'debug_toolbar' in settings.INSTALLED_APPS:
+    urlpatterns += debug_toolbar_urls()
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
