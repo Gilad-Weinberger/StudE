@@ -4,6 +4,7 @@ body {
 }
 body .main {
   padding: 40px;
+  padding-top: 20px;
   margin-left: 270px;
   max-width: calc(100vw - 270px);
 }

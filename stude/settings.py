@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'base',
     'users',
     'chatbot',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware"
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 ROOT_URLCONF = 'stude.urls'
@@ -84,13 +90,22 @@ DATABASES = {
     }
 }
 
+# DATABASES['default'] = {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'railway',
+#     'USER': 'postgres',
+#     'PASSWORD': 'knpfegGnaZxnLHakXQeFKWyGdzCRlJKb',
+#     'HOST': 'junction.proxy.rlwy.net',
+#     'PORT': '55974'
+# }
+
 DATABASES['default'] = {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'railway',
+    'NAME': 'stude_db',
     'USER': 'postgres',
-    'PASSWORD': 'knpfegGnaZxnLHakXQeFKWyGdzCRlJKb',
-    'HOST': 'junction.proxy.rlwy.net',
-    'PORT': '55974'
+    'PASSWORD': 'stude123',
+    'HOST': 'localhost',
+    'PORT': '5432'
 }
 # postgresql://postgres:knpfegGnaZxnLHakXQeFKWyGdzCRlJKb@junction.proxy.rlwy.net:55974/railway
 

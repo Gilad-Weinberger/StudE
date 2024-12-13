@@ -39,6 +39,7 @@ class Exam(models.Model):
     duration = models.IntegerField(null=True, blank=True)
     grade = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
-    def __str__(self):
-        return f"{self.name} | {self.class_obj} | {self.date.strftime('%d/%m/%Y')}"
+    def __str__(self):      
+        date_str = self.date.strftime('%d/%m/%Y') if self.date else 'No date'
+        return f"{self.name} | {self.class_obj} | {date_str}"
 

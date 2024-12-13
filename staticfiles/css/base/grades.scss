@@ -1,0 +1,42 @@
+body {
+  margin: 0px;
+  background-color: #f9f9f9;
+  .main {
+    padding: 40px;
+    padding-top: 20px;
+    margin-left: 270px;
+    max-width: calc(100vw - 270px);
+    .page-title {
+      margin: 0px;
+      font-size: 40px;
+    }
+    .top {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+      .top-grade {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        width: calc((100% - 40px) / 3);
+        .title {
+          margin: 0px;
+          font-size: 16px;
+        }
+        .data {
+          margin-top: 15px;
+          display: flex;
+          align-items: center;
+          .grade {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0px;
+            padding-right: 10px;
+            border-right: 1px solid #909090;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

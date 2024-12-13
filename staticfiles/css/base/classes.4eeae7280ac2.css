@@ -1,0 +1,54 @@
+body {
+  margin: 0px;
+  background-color: #f9f9f9;
+}
+body .main {
+  padding: 40px;
+  margin-left: 270px;
+  max-width: calc(100vw - 270px);
+}
+body .main .title {
+  margin: 0px;
+  font-size: 40px;
+}
+body .main .classes {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+}
+body .main .classes .class {
+  padding: 10px 10px 0px 10px;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 250px;
+  cursor: pointer;
+  text-decoration: none;
+}
+body .main .classes .class .icon {
+  width: 100%;
+  border-radius: 10px;
+}
+body .main .classes .class .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+body .main .classes .class .bottom .class-name {
+  margin: 0px;
+  color: black;
+  font-size: 20px;
+}
+body .main .classes .class .bottom .start {
+  text-decoration: none;
+  margin: 0px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  color: black;
+  border: 2px solid black;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+}/*# sourceMappingURL=classes.4eeae7280ac2.css.map */

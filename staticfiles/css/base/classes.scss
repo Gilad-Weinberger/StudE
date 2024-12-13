@@ -5,6 +5,7 @@ body {
   background-color: #f9f9f9;
   .main {
     padding: 40px;
+    padding-top: 20px;
     margin-left: 270px;
     max-width: calc(100vw - 270px);
     .title {
@@ -17,10 +18,39 @@ body {
       flex-wrap: wrap;
       gap: 35px;
       .class {
+        &.create-class {
+          padding: 0px;
+          width: 270px;
+          height: 260px;
+          background-color: #434bbf;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          border-radius: 10px;
+          cursor: pointer;
+          text-decoration: none;
+          gap: 10px;
+          color: white;
+          .class-name {
+            margin: 0px;
+          }
+          .start {
+            text-decoration: none;
+            margin: 0px;
+            width: $start-button-size;
+            height: $start-button-size;
+            line-height: $start-button-size;
+            border: 2px solid white;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+          }
+        }
         padding: 10px 10px 0px 10px;
         background-color: white;
         border-radius: 10px;
-        max-width: 250px;
+        width: 250px;
         cursor: pointer;
         text-decoration: none;
         .icon {

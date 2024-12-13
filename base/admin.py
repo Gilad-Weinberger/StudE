@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import *
 
+class ClassAdmin(admin.ModelAdmin):
+    class Meta:
+        verbose_name_plural = "Classes"
+
 class AssignmentAdmin(admin.ModelAdmin):
     actions = ['duplicate_assignment']
 
@@ -18,6 +22,6 @@ class AssignmentAdmin(admin.ModelAdmin):
             assignment.save()
     duplicate_assignment.short_description = "Duplicate selected assignments"
 
-admin.site.register(Class)
+admin.site.register(Class, ClassAdmin)
 admin.site.register(Assignment, AssignmentAdmin)
 admin.site.register(Exam)

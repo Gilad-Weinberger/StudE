@@ -1,0 +1,113 @@
+body {
+  margin: 0px;
+  background-color: #f9f9f9;
+}
+body .main {
+  padding: 40px;
+  margin-left: 270px;
+  max-width: calc(100vw - 270px);
+}
+body .main .title {
+  margin: 0px;
+  font-size: 40px;
+}
+body .main .exams {
+  margin-top: 40px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+body .main .exams thead {
+  background-color: #f5f5f5;
+}
+body .main .exams thead tr th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+body .main .exams thead tr th:last-child {
+  border-right: none;
+}
+body .main .exams tbody tr td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+  position: relative;
+}
+body .main .exams tbody tr td:last-child {
+  border-right: none;
+}
+body .main .exams tbody tr td.name {
+  font-size: 16px;
+}
+body .main .exams tbody tr td.name input {
+  width: 100%;
+  font-size: 16px;
+}
+body .main .exams tbody tr td.class {
+  font-size: 15px;
+  color: #666;
+}
+body .main .exams tbody tr td.class select {
+  width: 100%;
+  font-size: 15px;
+  color: #666;
+}
+body .main .exams tbody tr td.date {
+  font-size: 14px;
+  color: #666;
+}
+body .main .exams tbody tr td.date input {
+  width: 100%;
+  font-size: 14px;
+  color: #666;
+}
+body .main .exams tbody tr td.grade {
+  font-size: 15px;
+  color: #434bbf;
+  font-weight: 500;
+}
+body .main .exams tbody tr td.grade input {
+  width: 100%;
+  font-size: 15px;
+  color: #434bbf;
+  font-weight: 500;
+}
+body .main .exams tbody tr td input,
+body .main .exams tbody tr td select {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  font-family: inherit;
+}
+body .main .exams tbody tr td input:focus,
+body .main .exams tbody tr td select:focus {
+  outline: 2px solid #434bbf;
+  outline-offset: -2px;
+}
+body .main .exams tbody tr:last-child td {
+  border-bottom: none;
+}
+body .main .exams tbody tr.new-exam td {
+  text-align: center;
+}
+body .main .exams tbody tr.new-exam td a {
+  color: #434bbf;
+  text-decoration: none;
+}
+body .main .exams tbody tr.new-exam td a:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=exams.0ecab2ae5b0a.css.map */

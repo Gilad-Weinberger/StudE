@@ -1,16 +1,20 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from datetime import date
+from datetime import date, datetime
 from .models import *
+from django.db.models import Avg, F
 
 @login_required
 def Dashboard(request):
     user = request.user
     current_date = date.today()
 
+    classes = Class.objects.filter(user=user)[:3]
+
     context = {
         "user": user,
+        "classes": classes,
         "current_date": current_date
     }
     
@@ -29,6 +33,16 @@ def Classes(request):
     }
 
     return render(request, 'base/classes.html', context)
+
+@login_required
+def create_class(request):
+    user = request.user
+    
+    class_obj = Class.objects.create(
+        user=user,
+        name="New Class",
+    )
+    return redirect('base:classes')
 
 @login_required
 def Class_Page(request, class_id):
@@ -73,6 +87,7 @@ def create_assignment(request):
     
     assignment = Assignment.objects.create(
         user=user,
+        due_date=datetime.now(),
     )
     return redirect('base:assignments')
 
@@ -147,6 +162,7 @@ def create_exam(request):
     
     exam = Exam.objects.create(
         user=user,
+        date=date.today(),
     )
     return redirect('base:exams')
 
@@ -182,3 +198,45 @@ def update_exam(request, exam_id):
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+@login_required
+def Grades(request):
+    user = request.user
+    assignments = Assignment.objects.filter(user=user, grade__isnull=False).values('class_obj', 'grade')
+    exams = Exam.objects.filter(user=user, grade__isnull=False).values('class_obj', 'grade')
+    current_date = date.today()
+
+    if assignments:
+        assignments_avg = sum(assignment['grade'] for assignment in assignments) / len(assignments)
+    else:
+        assignments_avg = "None"
+
+    if exams:
+        exams_avg = sum(exam['grade'] for exam in exams) / len(exams)
+    else:
+        exams_avg = "None"
+
+    # Calculate best class using separate averages for assignments and exams
+    best_class = Class.objects.filter(user=user).annotate(
+        assignment_avg=Avg('assignment__grade'),
+        exam_avg=Avg('exam__grade')
+    ).order_by(
+        (F('assignment_avg') + F('exam_avg')) / 2
+    ).first()
+
+    # Calculate best class average
+    if best_class and (best_class.assignment_avg is not None or best_class.exam_avg is not None):
+        assignment_avg = best_class.assignment_avg or 0
+        exam_avg = best_class.exam_avg or 0
+        best_class.avg = (assignment_avg + exam_avg) / 2
+    else:
+        best_class.avg = "None"
+
+    context = {
+        "user": user,
+        "current_date": current_date,
+        "assignments_avg": assignments_avg,
+        "exams_avg": exams_avg,
+        "best_class": best_class
+    }
+    return render(request, 'base/grades.html', context)

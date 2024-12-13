@@ -58,18 +58,11 @@
           <p>Exams</p>
         </a>
         <a
-          href="#"
+          href="{% url 'base:grades' %}"
           class="menu-item {% if active_tab == 'grades' %}now{% endif %}"
         >
           <i class="fas fa-signal"></i>
           <p>Grades</p>
-        </a>
-        <a
-          href="#"
-          class="menu-item {% if active_tab == 'settings' %}now{% endif %}"
-        >
-          <i class="fas fa-cog"></i>
-          <p>Settings</p>
         </a>
       </div>
     </div>

@@ -4,6 +4,7 @@ body {
 }
 body .main {
   padding: 40px;
+  padding-top: 20px;
   margin-left: 270px;
   max-width: calc(100vw - 270px);
 }
@@ -12,10 +13,10 @@ body .main .title {
   font-size: 40px;
 }
 body .main .chatbot {
-  margin-top: 40px;
+  margin-top: 20px;
   background: white;
   border-radius: 15px;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 235px);
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

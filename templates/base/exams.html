@@ -42,11 +42,11 @@
             </td>
             <td class="date editable" data-field="date">
               <input type="date" value="{{ exam.date|date:'Y-m-d' }}" style="display:none">
-              <span>{{ exam.date|date:"d/m/Y" }}</span>
+              <span>{{ exam.date|date:"d/m/Y"|default:"None" }}</span>
             </td>
             <td class="grade editable" data-field="grade">
               <input type="number" min="0" max="100" step="0.01" value="{{ exam.grade|default:'' }}" style="display:none">
-              <span>{{ exam.grade|default:"" }}</span>
+              <span>{{ exam.grade|default:"None" }}</span>
             </td>
           </tr>
           {% endfor %}

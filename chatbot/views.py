@@ -19,13 +19,15 @@ genai.configure(api_key="AIzaSyDIMVFYAcZOWDGe6RjRUmSnNjxEO5cH1fE")
 @login_required
 def Chatbot(request):
     user = request.user
+    current_date = datetime.now()
     
     # Get last 50 messages for this user
     messages = Message.objects.filter(user=user).order_by('time')[:50]
     
     context = {
         'user': user, 
-        'messages': messages
+        'messages': messages,
+        'current_date': current_date
     }
     
     return render(request, 'chatbot/chatbot.html', context)

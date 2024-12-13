@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
+body {
+  margin: 0px;
+  font-family: "Rubik", sans-serif;
+}
+body .sidebar {
+  background-color: white;
+  height: calc(100vh - 60px);
+  position: fixed;
+  padding: 30px;
+  border-radius: 0px 30px 30px 0px;
+}
+body .sidebar .logo {
+  height: 40px;
+}
+body .sidebar .menu {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body .sidebar .menu .menu-item {
+  padding: 12px 20px;
+  width: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+body .sidebar .menu .menu-item.now {
+  background-color: #434bbf;
+  color: white;
+}
+body .sidebar .menu .menu-item i {
+  width: 18px;
+  align-self: center;
+}
+body .sidebar .menu .menu-item p {
+  margin: 0px;
+}/*# sourceMappingURL=sidebar.f458f83070d8.css.map */

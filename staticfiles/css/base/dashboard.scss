@@ -1,13 +1,57 @@
+$start-button-size: 35px;
+
 body {
   margin: 0px;
   background-color: #f9f9f9;
   .main {
     padding: 40px;
+    padding-top: 20px;
     margin-left: 270px;
     max-width: calc(100vw - 270px);
     .title {
       margin: 0px;
       font-size: 40px;
+    }
+    .classes {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 35px;
+      .class {
+        padding: 10px 10px 0px 10px;
+        background-color: white;
+        border-radius: 10px;
+        width: 250px;
+        cursor: pointer;
+        text-decoration: none;
+        .icon {
+          width: 100%;
+          border-radius: 10px;
+        }
+        .bottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px;
+          .class-name {
+            margin: 0px;
+            color: black;
+            font-size: 20px;
+          }
+          .start {
+            text-decoration: none;
+            margin: 0px;
+            width: $start-button-size;
+            height: $start-button-size;
+            line-height: $start-button-size;
+            color: black;
+            border: 2px solid black;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+          }
+        }
+      }
     }
   }
 }

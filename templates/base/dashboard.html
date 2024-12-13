@@ -16,8 +16,18 @@
   <body>
     {% include 'components/sidebar.html' with active_tab='dashboard' %}
     <div class="main">
-      {% include 'components/topbar.html' %}
-      <h1 class="title">Dashboard</h1>
+      {% include 'components/topbar.html' with title='Dashboard' %}
+      <div class="classes">
+        {% for class in classes %}
+        <a href="{% url 'base:class_page' class.id %}" class="class">
+          <img src="{% static 'images/class.jpg' %}" alt="" class="icon" />
+          <div class="bottom">
+            <h2 class="class-name">{{ class.name }}</h2>
+            <p class="start">></p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
     </div>
   </body>
 </html>

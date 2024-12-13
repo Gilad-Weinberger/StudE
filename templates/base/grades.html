@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudE | Exams</title>
+    <link rel="stylesheet" href="{% static 'css/base/grades.css' %}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/logo.png' %}"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    {% include 'components/sidebar.html' with active_tab='grades' %}
+    <div class="main">
+      {% include 'components/topbar.html' %}
+      <h1 class="page-title">Grades</h1>
+      <div class="top">
+        <div class="top-grade">
+          <p class="title">Exams Grades Average</p>
+          <div class="data">
+            <p class="grade">{{ exams_avg }}</p>
+            <p class="change"></p>
+            <i class="arrow"></i>
+          </div>
+        </div>
+        <div class="top-grade">
+          <p class="title">Assignments Grades Average</p>
+          <div class="data">
+            <p class="grade">{{ assignments_avg }}</p>
+            <p class="change"></p>
+            <i class="arrow"></i>
+          </div>
+        </div>
+        <div class="top-grade">
+          <p class="title">
+            Best Performing Class: <b>{{ best_class.name }}</b>
+          </p>
+          <div class="data">
+            <p class="grade">{{ best_class.avg }}</p>
+            <p class="change"></p>
+            <i class="arrow"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
