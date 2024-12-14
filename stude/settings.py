@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,12 +25,6 @@ SECRET_KEY = 'django-insecure-5d2qqi4s#gox^!x$v0rmodz#l&ehu4o$6v&s1&a8hu%cj%3mie
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
-# Get current hostname
-CURRENT_HOSTNAME = socket.gethostname()
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,7 +37,7 @@ INSTALLED_APPS = [
     'base',
     'users',
     'chatbot',
-    # "debug_toolbar",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -56,12 +49,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # "debug_toolbar.middleware.DebugToolbarMiddleware"
+    "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
-# INTERNAL_IPS = [
-#     "127.0.0.1",
-# ]
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 ROOT_URLCONF = 'stude.urls'
 
@@ -110,7 +103,7 @@ DATABASES['default'] = {
     'NAME': 'stude_db',
     'USER': 'postgres',
     'PASSWORD': 'stude123',
-    'HOST': CURRENT_HOSTNAME,
+    'HOST': 'localhost',
     'PORT': '5432'
 }
 
