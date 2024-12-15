@@ -87,25 +87,25 @@ DATABASES = {
     }
 }
 
-# DATABASES['default'] = {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': 'railway',
-#     'USER': 'postgres',
-#     'PASSWORD': 'knpfegGnaZxnLHakXQeFKWyGdzCRlJKb',
-#     'HOST': 'junction.proxy.rlwy.net',
-#     'PORT': '55974'
-# }
-# postgresql://postgres:knpfegGnaZxnLHakXQeFKWyGdzCRlJKb@junction.proxy.rlwy.net:55974/railway
-
-
 DATABASES['default'] = {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'stude_db',
+    'NAME': 'railway',
     'USER': 'postgres',
-    'PASSWORD': 'stude123',
-    'HOST': 'localhost',
-    'PORT': '5432'
+    'PASSWORD': 'RXiUVovnSSNxCEahBmaUdwqNMiJaBKSj',
+    'HOST': 'junction.proxy.rlwy.net',
+    'PORT': '22956'
 }
+# postgresql://postgres:RXiUVovnSSNxCEahBmaUdwqNMiJaBKSj@junction.proxy.rlwy.net:22956/railway
+
+
+# DATABASES['default'] = {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'stude_db',
+#     'USER': 'postgres',
+#     'PASSWORD': 'stude123',
+#     'HOST': 'localhost',
+#     'PORT': '5432'
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
